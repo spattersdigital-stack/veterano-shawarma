@@ -230,12 +230,12 @@ button,input,textarea{font:inherit;color:inherit}
 .loc h3{margin-bottom:.2rem}
 .loc .muted{color:var(--muted)}
 .copyrow{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem}
-#contacts{grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),250px));gap:1rem}
-#contacts .loc{padding:.8rem 1rem;gap:.3rem}
-#contacts .loc h3{font-size:.9rem;margin:0}
-#contacts .copyrow{flex-direction:column;align-items:flex-start;gap:.5rem}
-#contacts .ctext{font-size:.95rem}
-#contacts .btn{padding:.3rem .6rem;font-size:.78rem;flex:none}
+#contacts{grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),240px));gap:1rem}
+.contact{padding:.8rem 1rem;gap:.25rem;color:inherit;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.contact h3{font-size:.85rem;margin:0;color:var(--muted);font-weight:700}
+.contact .ctext{font-weight:700;font-size:.98rem}
+.contact:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--line)}
+.contact:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
 
 /* tables */
 .tablebox{overflow:hidden;width:100%;border:3px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:5px 5px 0 var(--line)}
@@ -1196,7 +1196,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
     {n:'На Оболоні',a:'просп. Оболонський, 19',d:'Київ, Оболонський район',h:'Щодня 10:00–22:00',p:'+380 (44) 000-24-03'}
   ];
   const ZONES=[['Зона 1: до 2 км','25–35 хв','49 грн'],['Зона 2: 2–4 км','35–45 хв','69 грн'],['Зона 3: 4–6 км','45–60 хв','89 грн']];
-  const CONTACTS=[['Телефон','+380 (44) 000-24-24'],['Пошта','hello@veterano.com.ua'],['Telegram','@veterano_shawarma'],['Instagram','@veterano.shawarma']];
+  const CONTACTS=[['Телефон','+380 (44) 000-24-24','tel:+380440002424'],['Пошта','hello@veterano.com.ua','mailto:hello@veterano.com.ua'],['Telegram','@veterano_shawarma','https://t.me/veterano_shawarma'],['Instagram','@veterano.shawarma','https://www.instagram.com/veterano.shawarma/']];
   /* ПРИКЛАДИ. Замініть справжніми відгуками і приберіть demo:true */
   const REVIEWS=[
     {demo:true,name:'Олена',date:'жовтень 2026',stars:5,dish:'Шаурма «Київ»',img:'img/kyiv.webp',text:'Замовляла в офіс на обід. Привезли за 35 хвилин, лаваш не розмок, курка справді з димком. Будемо брати ще.'},
@@ -1261,7 +1261,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
       '<div class="review-who"><span class="ava" aria-hidden="true">'+esc(r.name.charAt(0))+'</span><span><strong>'+esc(r.name)+'</strong><small>'+esc(r.date)+(r.demo?', приклад':'')+'</small></span></div></div></article>').join('');
     $('#faq').innerHTML=FAQ.map(q=>'<details><summary>'+esc(q[0])+'</summary><p>'+esc(q[1])+'</p></details>').join('');
     $('#zones').innerHTML=ZONES.map(z=>'<tr><td>'+esc(z[0])+'</td><td>'+esc(z[1])+'</td><td>'+esc(z[2])+'</td></tr>').join('');
-    $('#contacts').innerHTML=CONTACTS.map(c=>'<article class="card loc"><h3>'+esc(c[0])+'</h3><div class="copyrow"><span class="ctext">'+esc(c[1])+'</span><button class="btn btn-sm" type="button" data-do="copy" data-text="'+esc(c[1])+'">Скопіювати</button></div></article>').join('');
+    $('#contacts').innerHTML=CONTACTS.map(c=>{const ext=/^https?:/.test(c[2]);return '<a class="card loc contact" href="'+esc(c[2])+'"'+(ext?' target="_blank" rel="noopener"':'')+' aria-label="'+esc(c[0]+': '+c[1])+'"><h3>'+esc(c[0])+'</h3><span class="ctext">'+esc(c[1])+'</span></a>';}).join('');
     const tiles=[['sq-kyiv','Шаурма в руці'],['sq-hummus','Хумус'],['sq-kharkiv','Шаурма «Харків»'],['sq-baklava','Баклава'],['sq-about','М’ясо на вертелі']];
     $('#tiles').innerHTML=tiles.map(t=>'<div class="tile" style="background:var(--surface-2)"><img src="img/'+t[0]+'.webp" alt="'+esc(t[1])+'" width="400" height="400" loading="lazy" decoding="async"></div>').join('');
     const words=['Шаурма','Лаваш','Вугілля','Соуси','Боули'];
