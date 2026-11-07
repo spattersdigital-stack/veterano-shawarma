@@ -258,10 +258,13 @@ tr:last-child td{border-bottom:0}
 .proc h3{display:flex;align-items:center;gap:.7rem}
 .proc h3::before{content:counter(pr);flex:none;display:grid;place-items:center;width:2.2rem;height:2.2rem;border:3px solid var(--line);border-radius:50%;background:var(--sun);color:var(--on-sun);font-size:.95rem}
 .proc p{color:var(--muted)}
+.src{padding:.4rem 1.4rem}
+.src-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:.4rem 2rem;padding:1.1rem 0;border-bottom:2px solid var(--surface-2)}
+.src-row:last-child{border-bottom:0}
+.src-row p{color:var(--muted);max-width:70ch}
+@media (max-width:640px){.src{padding:.2rem 1.1rem}.src-row{grid-template-columns:1fr}}
 .tablebox.nut{overflow-x:auto}
 .tablebox.nut table{min-width:520px}
-.tablebox.cmp td:first-child{font-weight:700;white-space:nowrap}
-@media (max-width:760px){.tablebox.cmp td,.tablebox.cmp th{white-space:normal!important;text-align:left!important}.tablebox.cmp td:first-child{white-space:normal}}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1.4rem}
 .fact{padding:1.2rem}
 .fact h3{margin-bottom:.5rem}
@@ -803,10 +806,10 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
         </ol>
 
         <h2 class="ab-h">Звідки продукти</h2>
-        <div class="facts">
-          <div class="card fact"><h3>Курка</h3><p>Охолоджене куряче стегно від одного українського постачальника з документами на кожну партію. Приймаємо щоранку і перевіряємо температуру при прийманні.</p></div>
-          <div class="card fact"><h3>Овочі та зелень</h3><p>Свіжі, від овочевої бази на Київщині. Привозять щодня, тому ми не тримаємо запасів на тиждень.</p></div>
-          <div class="card fact"><h3>Лаваш і соуси</h3><p>Лаваш печемо самі, соуси варимо самі. Ніякого «кетчунезу»: часниковий робимо на йогурті, аджику на печеному перці.</p></div>
+        <div class="card src">
+          <div class="src-row"><h3>Курка</h3><p>Охолоджене куряче стегно від одного українського постачальника з документами на кожну партію. Приймаємо щоранку і перевіряємо температуру при прийманні.</p></div>
+          <div class="src-row"><h3>Овочі та зелень</h3><p>Свіжі, від овочевої бази на Київщині. Привозять щодня, тому ми не тримаємо запасів на тиждень.</p></div>
+          <div class="src-row"><h3>Лаваш і соуси</h3><p>Лаваш печемо самі, соуси варимо самі. Ніякого «кетчунезу»: часниковий робимо на йогурті, аджику на печеному перці.</p></div>
         </div>
 
         <h2 class="ab-h">Чистота і безпека</h2>
@@ -817,19 +820,6 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
           <div class="card fact"><h3>Контроль температури</h3><p>Холодильники перевіряємо кілька разів на день, курку готуємо до повної готовності всередині.</p></div>
           <div class="card fact"><h3>Нічого «зі вчора»</h3><p>Маринад, овочі й лаваш, які не використали за день, наступного дня не йдуть у роботу.</p></div>
         </div>
-
-        <h2 class="ab-h">Чим наша шаурма відрізняється від вуличної</h2>
-        <div class="tablebox cmp"><table>
-          <thead><tr><th>Що</th><th>VETERANO</th><th>Часто у кіосках</th></tr></thead>
-          <tbody>
-            <tr><td>М’ясо</td><td>Охолоджене куряче стегно</td><td>Заморожене, невідомого походження</td></tr>
-            <tr><td>Маринад</td><td>12 годин, йогурт і спеції</td><td>Кілька хвилин або без маринаду</td></tr>
-            <tr><td>Як смажать</td><td>Порціями на вугіллі</td><td>Рожен, що крутиться з ранку</td></tr>
-            <tr><td>Лаваш</td><td>Печемо щоранку</td><td>Магазинний, розмокає</td></tr>
-            <tr><td>Соус</td><td>Свої, на йогурті й овочах</td><td>Майонез із кетчупом</td></tr>
-            <tr><td>Кухня</td><td>Відкрита, видно процес</td><td>За склом, не видно</td></tr>
-          </tbody>
-        </table></div>
 
         <h2 class="ab-h">Склад і калорійність</h2>
         <p class="ab-sub">Орієнтовно, за одну порцію. Точні цифри залежать від соусу і добавок.</p>
