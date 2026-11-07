@@ -271,7 +271,9 @@ tr:last-child td{border-bottom:0}
 @media (max-width:640px){.src{padding:.2rem 1.1rem}.src-row{grid-template-columns:1fr}}
 .tablebox.nut{overflow-x:auto}
 .tablebox.nut table{min-width:520px}
-.tablebox.nut th:nth-child(n+3):nth-child(-n+5),.tablebox.nut td:nth-child(n+3):nth-child(-n+5){text-align:center}
+.tablebox.nut table{table-layout:fixed}
+.tablebox.nut th,.tablebox.nut td{width:16.666%}
+.tablebox.nut th:nth-child(n+2):nth-child(-n+5),.tablebox.nut td:nth-child(n+2):nth-child(-n+5){text-align:center!important}
 .tablebox.nut th:last-child,.tablebox.nut td:last-child{text-align:right;font-weight:700}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1.4rem}
 .fact{padding:1.2rem}
@@ -830,9 +832,9 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
         </div>
 
         <h2 class="ab-h">Склад і калорійність</h2>
-        <p class="ab-sub">Орієнтовно, за одну порцію. Точні цифри залежать від соусу і добавок.</p>
+        <p class="ab-sub">Орієнтовно, за одну порцію. Білки, жири й вуглеводи — у грамах. Точні цифри залежать від соусу і добавок.</p>
         <div class="tablebox nut"><table>
-          <thead><tr><th>Шаурма</th><th>Вага</th><th>Білки, г</th><th>Жири, г</th><th>Вуглеводи, г</th><th>Ккал</th></tr></thead>
+          <thead><tr><th>Шаурма</th><th>Вага</th><th>Білки</th><th>Жири</th><th>Вуглеводи</th><th>Ккал</th></tr></thead>
           <tbody><tr><td>Київ</td><td>360 г</td><td>38</td><td>26</td><td>58</td><td>640</td></tr><tr><td>Одеса</td><td>380 г</td><td>36</td><td>22</td><td>62</td><td>610</td></tr><tr><td>Львів</td><td>390 г</td><td>34</td><td>33</td><td>64</td><td>720</td></tr><tr><td>Харків</td><td>400 г</td><td>42</td><td>38</td><td>60</td><td>780</td></tr><tr><td>Дніпро</td><td>380 г</td><td>18</td><td>27</td><td>68</td><td>590</td></tr></tbody>
         </table></div>
 
