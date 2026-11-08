@@ -292,7 +292,9 @@ tr:last-child td{border-bottom:0}
   .tablebox.nut td:last-child{text-align:right!important;align-items:flex-end}
   #contacts{grid-template-columns:1fr 1fr;gap:.8rem}
   .contact{padding:.7rem .8rem}
-  .contact .ctext{font-size:.86rem;overflow-wrap:anywhere}
+  .contact{padding:.65rem .75rem}
+  .contact .ctext{font-size:.84rem}
+  .contact .nowrap{white-space:nowrap}
 }
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1.4rem}
 .fact{padding:1.2rem}
@@ -1284,7 +1286,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
       '<div class="review-who"><span class="ava" aria-hidden="true">'+esc(r.name.charAt(0))+'</span><span><strong>'+esc(r.name)+'</strong><small>'+esc(r.date)+(r.demo?', приклад':'')+'</small></span></div></div></article>').join('');
     $('#faq').innerHTML=FAQ.map(q=>'<details><summary>'+esc(q[0])+'</summary><p>'+esc(q[1])+'</p></details>').join('');
     $('#zones').innerHTML=ZONES.map(z=>'<tr><td>'+esc(z[0])+'</td><td>'+esc(z[1])+'</td><td>'+esc(z[2])+'</td></tr>').join('');
-    $('#contacts').innerHTML=CONTACTS.map(c=>{const ext=/^https?:/.test(c[2]);return '<a class="card loc contact" href="'+esc(c[2])+'"'+(ext?' target="_blank" rel="noopener"':'')+' aria-label="'+esc(c[0]+': '+c[1])+'"><h3>'+esc(c[0])+'</h3><span class="ctext">'+esc(c[1])+'</span></a>';}).join('');
+    $('#contacts').innerHTML=CONTACTS.map(c=>{const ext=/^https?:/.test(c[2]);return '<a class="card loc contact" href="'+esc(c[2])+'"'+(ext?' target="_blank" rel="noopener"':'')+' aria-label="'+esc(c[0]+': '+c[1])+'"><h3>'+esc(c[0])+'</h3><span class="ctext">'+(c[2].startsWith('tel:')?'<span class="nowrap">'+esc(c[1])+'</span>':esc(c[1]).replace(/([@._])(?=.)/g,(m,ch,i)=>i===0?ch:ch+'<wbr>'))+'</span></a>';}).join('');
     const tiles=[['sq-kyiv','Шаурма в руці'],['sq-hummus','Хумус'],['sq-kharkiv','Шаурма «Харків»'],['sq-baklava','Баклава'],['sq-about','М’ясо на вертелі']];
     $('#tiles').innerHTML=tiles.map(t=>'<div class="tile" style="background:var(--surface-2)"><img src="img/'+t[0]+'.webp" alt="'+esc(t[1])+'" width="400" height="400" loading="lazy" decoding="async"></div>').join('');
     const words=['Шаурма','Лаваш','Вугілля','Соуси','Боули'];
