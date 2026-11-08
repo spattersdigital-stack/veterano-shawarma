@@ -614,7 +614,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
             <div class="in"><span class="lbl hot">Гаряча з вогню</span><p class="h">Шаурма з вугілля <b>від 159 грн</b></p><p>Лаваш печемо щодня, соуси робимо самі.</p><a class="btn btn-lavash" href="#menu">До меню</a></div>
           </article>
           <article class="slide" aria-roledescription="slide" aria-label="2 з 4">
-            <img src="img/delivery.webp" alt="" width="800" height="600" decoding="async">
+            <img src="img/delivery.webp" srcset="img/delivery-480.webp 480w, img/delivery.webp 800w" sizes="(max-width:760px) 100vw, 560px" alt="" width="800" height="600" decoding="async">
             <div class="in"><span class="lbl">Доставка</span><p class="h">Безкоштовно <b>від 450 грн</b></p><p>Привеземо гарячою за 30–40 хвилин.</p><a class="btn btn-lavash" href="#delivery">Умови доставки</a></div>
           </article>
           <article class="slide" aria-roledescription="slide" aria-label="3 з 4">
@@ -949,7 +949,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
   <div data-page="404" hidden>
     <section class="nf">
       <div class="wrap">
-        <div class="nf-code" aria-hidden="true"><span>4</span><span class="nf-o"><img src="img/kyiv.webp" alt="" width="800" height="600" loading="lazy" decoding="async"></span><span>4</span></div>
+        <div class="nf-code" aria-hidden="true"><span>4</span><span class="nf-o"><img src="img/kyiv-480.webp" alt="" width="480" height="360" loading="lazy" decoding="async"></span><span>4</span></div>
         <h1>Цю шаурму вже з’їли</h1>
         <p>Сторінки, яку ви шукаєте, немає. Можливо, посилання застаріло або в адресі помилка. Зате меню на місці і лаваш гарячий.</p>
         <div class="acts">
@@ -1253,7 +1253,9 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
     sweet:m=>svg('<g '+G+'><rect x="46" y="60" width="52" height="52" rx="6" fill="#E9C46A" transform="rotate(8 72 86)"/><rect x="100" y="52" width="52" height="52" rx="6" fill="#F6DDA0" transform="rotate(-10 126 78)"/><circle cx="72" cy="86" r="5" fill="#2E8B57"/><circle cx="126" cy="78" r="5" fill="#2E8B57"/></g>',m.name),
     falafel:m=>svg('<g '+G+'><circle cx="76" cy="84" r="24" fill="#B5651D"/><circle cx="122" cy="76" r="24" fill="#C98235"/><circle cx="98" cy="108" r="22" fill="#A85A18"/><path d="M68 78h.1M84 92h.1M118 70h.1M130 84h.1M92 104h.1M106 112h.1" stroke-width="5"/></g>',m.name)
   };
-  const art=m=>m.img?'<img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" width="640" height="480" loading="lazy" decoding="async">':ART[m.art](m);
+  const sm=(src,suf)=>src.replace(/\.webp$/,suf+'.webp');
+  const SRCSET=src=>' srcset="'+esc(sm(src,'-480'))+' 480w, '+esc(src)+' 800w" sizes="(max-width:760px) 92vw, 360px"';
+  const art=m=>m.img?'<img src="'+esc(m.img)+'"'+SRCSET(m.img)+' alt="'+esc(m.name)+'" width="640" height="480" loading="lazy" decoding="async">':ART[m.art](m);
 
   /* ---------- cart state ---------- */
   let cart={};
@@ -1284,7 +1286,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
     $('#chips').innerHTML=CATS.map((c,i)=>'<button class="chip" type="button" data-cat="'+c.id+'" aria-pressed="'+(i===0)+'">'+esc(c.name)+'</button>').join('');
     const locHTML=LOCS.map(l=>'<article class="card loc"><h3>'+esc(l.n)+'</h3><p>'+esc(l.a)+'</p><p class="muted">'+esc(l.d)+'</p><p class="muted">'+esc(l.h)+'</p><p>'+esc(l.p)+'</p></article>').join('');
     $('#home-locs').innerHTML=locHTML; $('#locs').innerHTML=locHTML;
-    $('#reviews').innerHTML=REVIEWS.map(r=>'<article class="card review">'+(r.img?'<div class="ph"><img src="'+esc(r.img)+'" alt="'+esc(r.dish)+'" width="640" height="480" loading="lazy" decoding="async">'+(r.demo?'<span class="demo">Приклад</span>':'')+'<span class="dishname">'+esc(r.dish)+'</span></div>':'')+
+    $('#reviews').innerHTML=REVIEWS.map(r=>'<article class="card review">'+(r.img?'<div class="ph"><img src="'+esc(r.img)+'"'+(/-\d+\.webp$|sq-|step-|about|hero/.test(r.img)?'':SRCSET(r.img))+' alt="'+esc(r.dish)+'" width="640" height="480" loading="lazy" decoding="async">'+(r.demo?'<span class="demo">Приклад</span>':'')+'<span class="dishname">'+esc(r.dish)+'</span></div>':'')+
       '<div class="review-body"><div class="stars" role="img" aria-label="Оцінка '+r.stars+' з 5">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(5-r.stars)+'</span></div><blockquote>'+esc(r.text)+'</blockquote>'+
       '<div class="review-who"><span class="ava" aria-hidden="true">'+esc(r.name.charAt(0))+'</span><span><strong>'+esc(r.name)+'</strong><small>'+esc(r.date)+(r.demo?', приклад':'')+'</small></span></div></div></article>').join('');
     $('#faq').innerHTML=FAQ.map(q=>'<details><summary>'+esc(q[0])+'</summary><p>'+esc(q[1])+'</p></details>').join('');
@@ -1376,7 +1378,7 @@ pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-body);back
     $('#op-send').hidden=!!o.sent;$('#op-text').hidden=!!o.sent;
     $('#op-num').textContent='Замовлення '+o.num;
     $('#op-title').textContent='Дякуємо, '+o.name+'!';
-    $('#op-items').innerHTML=o.items.map(it=>{const m=MAP[it.id];return '<li>'+(m.img?'<img src="'+esc(m.img)+'" alt="" width="56" height="56">':'<span></span>')+'<span class="nm">'+esc(m.name)+'<span class="q">'+it.q+' × '+money(m.price)+'</span></span><span class="pr">'+money(m.price*it.q)+'</span></li>';}).join('');
+    $('#op-items').innerHTML=o.items.map(it=>{const m=MAP[it.id];return '<li>'+(m.img?'<img src="'+esc(sm(m.img,'-160'))+'" alt="" width="56" height="56">':'<span></span>')+'<span class="nm">'+esc(m.name)+'<span class="q">'+it.q+' × '+money(m.price)+'</span></span><span class="pr">'+money(m.price*it.q)+'</span></li>';}).join('');
     $('#op-sum').innerHTML='<dt>Страви</dt><dd>'+money(o.sub)+'</dd><dt>'+(o.m==='delivery'?'Доставка':'Самовивіз')+'</dt><dd>'+(o.m==='pickup'?'0 грн':(o.fee?money(o.fee):'безкоштовно'))+'</dd><dt class="tot">Разом</dt><dd class="tot">'+money(o.sub+o.fee)+'</dd>';
     $('#op-meta').innerHTML='<dt>Отримання</dt><dd>'+(o.m==='delivery'?'Доставка':'Самовивіз')+'</dd>'+(o.m==='delivery'?'<dt>Адреса</dt><dd>'+esc(o.addr)+'</dd>':'')+'<dt>Телефон</dt><dd>'+esc(o.phone)+'</dd>'+(o.note?'<dt>Коментар</dt><dd>'+esc(o.note)+'</dd>':'');
     $('#op-step3').textContent=o.m==='delivery'?'Готуємо і веземо':'Готуємо, ви забираєте';
